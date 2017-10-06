@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mysql = require("mysql");
 var path = require("path");
+var connection;
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -12,10 +13,21 @@ app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
 
+if (process.env.JAWSDB_URL){
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'hacktheplanet',
+    database: 'todoagain_db'
+  });
+};
+
 
 // Database =============================================================
 
-  var connection = mysql.createConnection({
+  connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
 
