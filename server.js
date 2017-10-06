@@ -7,6 +7,13 @@ var connection;
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.listen(PORT, function() {
+	console.log("App listening on PORT " + PORT);
+});
+
 if (process.env.JAWSDB_URL){
 	connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
@@ -18,8 +25,8 @@ if (process.env.JAWSDB_URL){
 	});
 };
 
-console.log("JAWS DB URL ***********")
-console.log(process.env.JAWSDB_URL);
+// console.log("JAWS DB URL ***********")
+// console.log(process.env.JAWSDB_URL);
 
 // Database =============================================================
 
@@ -32,7 +39,7 @@ connection = mysql.createConnection({
 
   // Your password
   password: "",
-  database: "xfn08twhr0fg3137"
+  database: "attilios_db"
 });
 
 connection.connect(function(err) {
@@ -40,11 +47,6 @@ connection.connect(function(err) {
 	console.log("connected as id " + connection.threadId + "\n");
 });
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.listen(PORT, function() {
-	console.log("App listening on PORT " + PORT);
-});
 
 
 function createRecord() {
