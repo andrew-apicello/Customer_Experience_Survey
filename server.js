@@ -36,7 +36,7 @@ if (process.env.JAWSDB_URL){
 
   // Your password
   password: "",
-  database: "attilios_db"
+  database: "xfn08twhr0fg3137"
 });
 
   connection.connect(function(err) {
@@ -158,7 +158,7 @@ app.post("/api/new", function(req, res) {
 
 
 
-// Mock Data =============================================================
+// Dummy Data =============================================================
 var records = [
 {
   LTR: 10,
