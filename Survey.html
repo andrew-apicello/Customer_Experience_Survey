@@ -110,7 +110,7 @@
 
       <div class="individual_questions">
         <!-- Question 1 -->
-        <h3 class="question_header">How likely are you to refer Attilio's to a friend or family member?</h3>
+        <h2 class="question_header">How likely are you to refer Attilio's to a friend or family member?</h2>
         <div class="checkboxgroup">
           <label  for="Q1_radio_button_id1">1</label>
           <input  type="radio" name="radio1" id="Q1_radio_button_id1" />
@@ -124,37 +124,37 @@
           <input type="radio" name="radio1" id="Q1_radio_button_id3" />
         </div>
         <div class="checkboxgroup">
-          <label for="Q1_radio_button_id3">4</label>
+          <label for="Q1_radio_button_id4">4</label>
           <input type="radio" name="radio1" id="Q1_radio_button_id4" />
         </div>
         <div class="checkboxgroup">
-          <label for="Q1_radio_button_id3">5</label>
+          <label for="Q1_radio_button_id5">5</label>
           <input type="radio" name="radio1" id="Q1_radio_button_id5" />
         </div>
         <div class="checkboxgroup">
-          <label for="Q1_radio_button_id3">6</label>
+          <label for="Q1_radio_button_id6">6</label>
           <input type="radio" name="radio1" id="Q1_radio_button_id6" />
         </div>
         <div class="checkboxgroup">
-          <label for="Q1_radio_button_id3">7</label>
+          <label for="Q1_radio_button_id7">7</label>
           <input type="radio" name="radio1" id="Q1_radio_button_id7" />
         </div>
         <div class="checkboxgroup">
-          <label for="Q1_radio_button_id3">8</label>
+          <label for="Q1_radio_button_id8">8</label>
           <input type="radio" name="radio1" id="Q1_radio_button_id8" />
         </div>
         <div class="checkboxgroup">
-          <label for="Q1_radio_button_id3">9</label>
+          <label for="Q1_radio_button_id9">9</label>
           <input type="radio" name="radio1" id="Q1_radio_button_id9" />
         </div>
         <div class="checkboxgroup">
-          <label for="Q1_radio_button_id3">10</label>
+          <label for="Q1_radio_button_id10">10</label>
           <input type="radio" name="radio1" id="Q1_radio_button_id10" />
         </div>
       </div>
       <!-- Question 2 -->
       <div class="individual_questions">
-        <h3 class="question_header">How satisfied are you with your overall experience at Attilio's?</h3>
+        <h2 class="question_header">How satisfied are you with your overall experience at Attilio's?</h2>
         <div class="checkboxgroup">
           <label  for="Q2_radio_button_id1">1</label>
           <input  type="radio" name="radio2" id="Q2_radio_button_id1" />
@@ -199,19 +199,19 @@
     </div><!--End question_container -->
   </div><!-- End first background -->
   <div id="questionPageTwo">
-  <div class="spacer">
-  </div>
+    <div class="spacer">
+    </div>
     <div class="questions_container">
       <div class="individual_questions">
         <!-- Question 1 -->
-        <h3 class="question_header">What is the primary reason for the scores you just gave?</h3>
+        <h2 class="question_header">What is the primary reason for the scores you just gave?</h2>
         <div class="form-group">
           <label for="comment">Comment:</label>
           <input type="text" class="form-control" id="comment" maxlength="250">
         </div>
       </div>
       <div class="individual_questions">
-        <h3 class="question_header">If you would like to be contacted, please leave your email and phone number and we will reach out to you regarding your visit shortly. Thank you!</h3>
+        <h2 class="question_header">If you would like to be contacted, please leave your email and phone number and we will reach out to you regarding your visit shortly. Thank you!</h2>
         <div class="form-group">
           <label for="phone">Phone #:</label>
           <input type="text" class="form-control" id="phone" maxlength="15">
@@ -227,11 +227,16 @@
     </div>
   </div> <!-- End second background -->
   <script type="text/javascript">
+
+
+
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
-      var q1ID;
-      var q2ID;
 // get all inputs' ids, see what question they are from, assign them an illustrative variable 
+var newRecord;
+var q1ID;
+var q2ID;
+
 $(function () {
   $('input').each(function () {
     if(document.getElementById(this.id).checked){
@@ -244,17 +249,24 @@ $(function () {
       }
     }
   });
+  newRecord = {
+    LTR: q1ID,
+    OSAT: q2ID,
+    comment: $("#comment").val().trim(),
+    phone: $("#phone").val().trim(),
+    email: $("#email").val().trim()
+  };
+
+  postRecord();
 });
-var newRecord = {
-  LTR: q1ID,
-  OSAT: q2ID,
-  comment: $("#comment").val().trim(),
-  phone: $("#phone").val().trim(),
-  email: $("#email").val().trim()
-};
-$.post("/api/new", newRecord)
-.done(function(data) {
-});
+
+function postRecord(){
+  $.post("/api/new", newRecord)
+  .done(function(data) {
+    console.log("Here")
+    document.write("<body background=\"images/pasta-2776701_960_720.jpg\" style=\"transition: 1s;\"><div style=\"margin: 20%;padding: 15px;font-size: 120%;text-align: center;border: solid black 1px;border-radius: 25px;background: white; background: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));background: -o-linear-gradient(bottom left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));background: -moz-linear-gradient(bottom left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));;\"><h1 background-white text-align=\"center\">Thank you for your response!<\/h1><h2>We look forward to seeing you again soon.<\/h2><\/div><\/body>");
+  });
+}
 });
 </script>
 

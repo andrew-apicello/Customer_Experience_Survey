@@ -13,11 +13,8 @@ app.listen(PORT, function() {
 });
 
 
-
-
 // Database =============================================================
 
-function connectToDatabase(){
   var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -33,8 +30,8 @@ function connectToDatabase(){
   connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
-    createRecord();
   });
+
 
   function createRecord() {
     console.log("Inserting a new record...\n");
@@ -56,8 +53,6 @@ function connectToDatabase(){
   // logs the actual query being run
   console.log(query.sql);
 }
-}
-
 
 
 
@@ -66,13 +61,33 @@ function connectToDatabase(){
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "front_end.html"));
+  res.sendFile(path.join(__dirname, "Survey.html"));
 });
 
-// Reply with the add file webpage
-app.get("/DineIn_PizzaParlor", function(req, res) {
-  res.sendFile(path.join(__dirname, "DineIn_PizzaParlor.html"));
+// app.get("/admin", function(req, res) {
+//   res.sendFile(path.join(__dirname, "Admin.html"));
+// });
+
+app.get("/admin", function(req, res) {
+  connection.query("SELECT * FROM records ORDER BY record_id", function(err, results){
+    var html = "<h1>Survey Records</h1>"
+    html += "<ul>"
+    var cast;
+    for(i=0;i<results.length;i++){
+      html += "<h3>-------------------------------------------------</h3>";
+      html += "<p>ID: " + results[i].record_id + "</p>";
+      html += "<p>LTR: " + results[i].LTR + "</p>";
+      html += "<p>OSAT: " + results[i].OSAT + "</p>";
+      //this needs a timestamp
+      html += "<p>Comment: " + results[i].comment + "</p>";
+      html += "<p>Phone #: " + results[i].phone + "</p>";
+      html += "<p>Email: " + results[i].email + "</p>";
+    }
+
+    res.send(html); 
+  })
 });
+
 
 
 // get images when requested
@@ -83,16 +98,17 @@ app.get("/images/spaghetti-2210680_960_720.jpg", function(req, res) {
   res.sendFile(path.join(__dirname, "images/spaghetti-2210680_960_720.jpg"));
 });
 
-
-
-app.get("/all", function(req, res) {
-  res.sendFile(path.join(__dirname, "all.html"));
+app.get("/images/pasta-2776701_960_720.jpg", function(req, res) {
+  res.sendFile(path.join(__dirname, "images/pasta-2776701_960_720.jpg"));
 });
+
+
+
 
 // Reply with all records in json format
-app.get("/tables", function(req, res) {
-  res.json(records);
-});
+// app.get("/tables", function(req, res) {
+//   res.json(records);
+// });
 
 // dynamically searches our data for the query and responds 
 app.get("/api/:records?", function(req, res) {
@@ -121,7 +137,8 @@ app.post("/api/new", function(req, res) {
   newRecord.uniqueID = newRecord.email.replace(/\s+/g, "").toLowerCase();
   console.log(newRecord);
   records.push(newRecord);
-  connectToDatabase()
+  createRecord()
+  return res.json("yes");
 });
 
 
@@ -129,8 +146,7 @@ app.post("/api/new", function(req, res) {
 
 
 
-
-// Data =============================================================
+// Mock Data =============================================================
 var records = [
 {
   LTR: 10,
