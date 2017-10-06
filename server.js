@@ -28,14 +28,14 @@ if (process.env.JAWSDB_URL){
 // Database =============================================================
 
   connection = mysql.createConnection({
-    host: "l7cup2om0gngra77.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    host: "localhost",
     port: 3306,
 
   // Your username
-  user: "he3qwp7hl0ha9pb7",
+  user: "root",
 
   // Your password
-  password: "tga4ahvdvmgjv3ou",
+  password: "",
   database: "attilios_db"
 });
 
