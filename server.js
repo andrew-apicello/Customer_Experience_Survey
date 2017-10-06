@@ -7,12 +7,6 @@ var connection;
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.listen(PORT, function() {
-	console.log("App listening on PORT " + PORT);
-});
-
 if (process.env.JAWSDB_URL){
 	connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
@@ -44,6 +38,12 @@ connection = mysql.createConnection({
 connection.connect(function(err) {
 	if (err) throw err;
 	console.log("connected as id " + connection.threadId + "\n");
+});
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.listen(PORT, function() {
+	console.log("App listening on PORT " + PORT);
 });
 
 
