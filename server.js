@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mysql = require("mysql");
-// var path = require("path");
+var path = require("path");
 var connection;
 
 var app = express();
@@ -17,10 +17,10 @@ if (process.env.JAWSDB_URL){
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'hacktheplanet',
-    database: 'todoagain_db'
+    host: 'l7cup2om0gngra77.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'he3qwp7hl0ha9pb7',
+    password: 'z6t3vf43x8c846ta',
+    database: 'xfn08twhr0fg3137'
   });
 };
 
