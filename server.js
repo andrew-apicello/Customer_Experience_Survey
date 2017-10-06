@@ -24,6 +24,8 @@ if (process.env.JAWSDB_URL){
   });
 };
 
+console.log("JAWS DB URL ***********")
+console.log(process.env.JAWSDB_URL);
 
 // Database =============================================================
 
