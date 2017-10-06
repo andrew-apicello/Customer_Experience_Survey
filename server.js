@@ -15,15 +15,14 @@ app.listen(PORT, function() {
 
 if (process.env.JAWSDB_URL){
   connection = mysql.createConnection(process.env.JAWSDB_URL);
-} 
-// else {
-//   connection = mysql.createConnection({
-//     host: 'l7cup2om0gngra77.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-//     user: 'he3qwp7hl0ha9pb7',
-//     password: 'z6t3vf43x8c846ta',
-//     database: 'xfn08twhr0fg3137'
-//   });
-// };
+} else {
+  connection = mysql.createConnection({
+    host: 'jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'g10nr5t9oknfld60',
+    password: 'x2d5bnaw8bm9zpxp',
+    database: 'xfn08twhr0fg3137'
+  });
+};
 
 console.log("JAWS DB URL ***********")
 console.log(process.env.JAWSDB_URL);
