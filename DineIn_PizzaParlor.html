@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attilio's Villagio Feedback</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose" rel="stylesheet">
+</script>
+<style type="text/css">
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  #questionPageOne{
+    float: left;
+    background-attachment: fixed;
+    background: url(images/background-1932466_960_720.jpg);
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: visible;
+    transition: 0.15s;
+    border-bottom: black solid 1px;
+  }
+  #questionPageTwo{
+    float: left;
+    background-attachment: fixed;
+    background: url(images/spaghetti-2210680_960_720.jpg);
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: visible;
+    transition: 0.15s;
+  }
+
+  h1 {
+    list-style-type: none;    
+    margin-bottom: 100px; 
+    position: relative;
+    top: 30px; 
+    padding-top: 8px;
+    padding-bottom: 8px;     
+    color: black;
+    text-align: center;
+    background: white; 
+    background: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    background: -o-linear-gradient(bottom left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    background: -moz-linear-gradient(bottom left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    border-bottom: black solid 1px;
+    border-top: black solid 1px;
+    font-family: 'Miss Fajardose', cursive;
+    font-size: 500%;
+    width: 100%;
+  }
+
+
+  .individual_questions{
+    margin: 5%;
+    padding: 5%;
+    text-align: center;
+    border-radius: 25px;
+    background-color: white;
+    background: white; 
+    background: -webkit-linear-gradient(bottom right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    background: -o-linear-gradient(bottom right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    background: -moz-linear-gradient(bottom right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    border: black solid 1px;
+
+  }
+
+  .questions_container{
+    margin: 0% 10%;
+  }
+
+  .question_header{
+    text-align: left;
+    padding-bottom: 2%;
+  }
+
+  .checkboxgroup {
+    display: inline-block;
+    text-align: center;
+  }
+  .checkboxgroup label {
+    display: block;
+    padding: 10px 25px;
+    font-size: 150%
+  }
+  .spacer{
+    padding: 40px;
+  }
+
+  #comment{
+    width: 70%;
+  }
+</style>
+
+</head>
+<body>
+  <div id="questionPageOne">
+    <h1>Attilio's Villagio Ristorante & Pizzeria</h1>
+    <div class="questions_container">
+
+      <div class="individual_questions">
+        <!-- Question 1 -->
+        <h3 class="question_header">How likely are you to refer Attilio's to a friend or family member?</h3>
+        <div class="checkboxgroup">
+          <label  for="Q1_radio_button_id1">1</label>
+          <input  type="radio" name="radio1" id="Q1_radio_button_id1" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id2">2</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id2" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id3">3</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id3" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id3">4</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id4" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id3">5</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id5" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id3">6</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id6" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id3">7</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id7" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id3">8</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id8" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id3">9</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id9" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q1_radio_button_id3">10</label>
+          <input type="radio" name="radio1" id="Q1_radio_button_id10" />
+        </div>
+      </div>
+      <!-- Question 2 -->
+      <div class="individual_questions">
+        <h3 class="question_header">How satisfied are you with your overall experience at Attilio's?</h3>
+        <div class="checkboxgroup">
+          <label  for="Q2_radio_button_id1">1</label>
+          <input  type="radio" name="radio2" id="Q2_radio_button_id1" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id2">2</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id2" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id3">3</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id3" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id4">4</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id4" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id5">5</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id5" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id6">6</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id6" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id7">7</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id7" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id8">8</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id8" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id9">9</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id9" />
+        </div>
+        <div class="checkboxgroup">
+          <label for="Q2_radio_button_id10">10</label>
+          <input type="radio" name="radio2" id="Q2_radio_button_id10" />
+        </div>
+      </div>
+    </div><!--End question_container -->
+  </div><!-- End first background -->
+  <div id="questionPageTwo">
+  <div class="spacer">
+  </div>
+    <div class="questions_container">
+      <div class="individual_questions">
+        <!-- Question 1 -->
+        <h3 class="question_header">What is the primary reason for the scores you just gave?</h3>
+        <div class="form-group">
+          <label for="comment">Comment:</label>
+          <input type="text" class="form-control" id="comment" maxlength="250">
+        </div>
+      </div>
+      <div class="individual_questions">
+        <h3 class="question_header">If you would like to be contacted, please leave your email and phone number and we will reach out to you regarding your visit shortly. Thank you!</h3>
+        <div class="form-group">
+          <label for="phone">Phone #:</label>
+          <input type="text" class="form-control" id="phone" maxlength="15">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" class="form-control" id="email" maxlength="50">
+        </div>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span>Submit</button>
+        </div>
+      </div>
+    </div>
+  </div> <!-- End second background -->
+  <script type="text/javascript">
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var q1ID;
+      var q2ID;
+// get all inputs' ids, see what question they are from, assign them an illustrative variable 
+$(function () {
+  $('input').each(function () {
+    if(document.getElementById(this.id).checked){
+      if(this.id.slice(0,2) == "Q1"){
+        q1ID = this.id.slice(-1);
+        console.log(q1ID);
+      } else if (this.id.slice(0,2) == "Q2"){
+        q2ID = this.id.slice(-1);
+        console.log(q2ID);
+      }
+    }
+  });
+});
+var newRecord = {
+  LTR: q1ID,
+  OSAT: q2ID,
+  comment: $("#comment").val().trim(),
+  phone: $("#phone").val().trim(),
+  email: $("#email").val().trim()
+};
+$.post("/api/new", newRecord)
+.done(function(data) {
+});
+});
+</script>
+
+</body>
+</html>
+
+<!-- 
+pg1
+time and date
+
+pg2
+How satisfied are you with your overall experience at Chipotle?
+How likely are you to recommend Chipotle to a friend or colleague?
+
+pg3
+What type of experience did you have? dinein.. carry out etc
+how did you place your order?
+required
+
+pg4
+Based on your recent experience, please rate your satisfaction with the following:
+taste of your food
+friendliness of our staff
+ease of placing order
+cleanliness of the restaurant
+speed of service
+
+pg5
+were and items unavailable?
+did you experience a problem on your visit?
+-> branches from here to ask if problem was resolved
+was your order accurate?
+
+pg6
+including this visit, how many times have you ordered from chipotle in the lst 6 months?
+please indicate your age group
+
+pg 7
+thank you page
+
+
+-->
