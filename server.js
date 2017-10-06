@@ -27,17 +27,17 @@ if (process.env.JAWSDB_URL){
 
 // Database =============================================================
 
-  connection = mysql.createConnection({
-    host: "l7cup2om0gngra77.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    port: 3306,
+//  connection = mysql.createConnection({
+//     host: "l7cup2om0gngra77.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+//     port: 3306,
 
-  // Your username
-  user: "he3qwp7hl0ha9pb7",
+//   // Your username
+//   user: "he3qwp7hl0ha9pb7",
 
-  // Your password
-  password: "z6t3vf43x8c846ta",
-  database: "xfn08twhr0fg3137"
-});
+//   // Your password
+//   password: "z6t3vf43x8c846ta",
+//   database: "xfn08twhr0fg3137"
+// });
 
   connection.connect(function(err) {
     if (err) throw err;
