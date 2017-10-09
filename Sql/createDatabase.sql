@@ -11,5 +11,6 @@ CREATE table records(
   comment VARCHAR(250),
   phone Integer(10),
   email VARCHAR(30),
+  DateCreated DATETIME NOT NULL DEFAULT(GETDATE()),
   PRIMARY KEY (record_id)
 );
