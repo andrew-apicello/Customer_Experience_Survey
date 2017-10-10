@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Survey Admin Page</title>
+
+	<style type="text/css">
+		li{
+			float: left;
+			border: black solid 1px;
+		}
+	</style>
+</head>
+<body>
+<h1>Records List</h1>
+<hr>
+	<ul>
+		{{#each records}}
+		<li>
+			<p>ID: {{record_id}}</p>
+			<p>LTR: {{LTR}}</p>
+			<p>OSAT: {{OSAT}}</p>
+			<p>Comment: {{comment}}</p>
+			<p>Phone: {{phone}}</p>
+			<p>Email: {{email}}</p>
+		</li>
+		{{/each}}
+	</ul>
+</body>
+</html>

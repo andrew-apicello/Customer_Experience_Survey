@@ -1,62 +1,56 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mysql = require("mysql");
+var exphbs = require("express-handlebars");
 var path = require("path");
-var connection;
+var d3 = require("d3");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+//Starts Server Listening
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+});
 
+// Sets up the Express app to handle body data parsing
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.listen(PORT, function() {
-	console.log("App listening on PORT " + PORT);
-});
 
-if (process.env.JAWSDB_URL){
-	connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-	connection = mysql.createConnection({
-		host: "localhost",
-		port: 3306,
-		user: "root",
-		password: "",
-		database: "attilios_db"
-	});
-};
+//Sets up Express to use Handlebars
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
-// console.log("JAWS DB URL ***********")
-// console.log(process.env.JAWSDB_URL);
 
 // Database =============================================================
-
-
-connection.connect(function(err) {
-	if (err) throw err;
-	console.log("connected as id " + connection.threadId + "\n");
-});
-
+if (process.env.JAWSDB_URL){
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "jj820qt5lpu6krut.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    port: 3306,
+    user: "yli0oc4wh95zw36m",
+    password: "ixptq9ltn5o63u5r",
+    database: "ak52q7iqcgjxtyud"
+  });
+};
 
 
 function createRecord() {
-	console.log("Inserting a new record...\n");
-	var query = connection.query(
-		"INSERT INTO records SET ?",
-		{
-			LTR:newRecord.LTR,
-			OSAT:newRecord.OSAT,
-			comment:newRecord.comment,
-			phone:newRecord.phone,
-			email:newRecord.email
-		},
-		function(err, res) {
-			console.log(res.affectedRows + " record inserted!\n");
-      // Call updateProduct AFTER the INSERT completes
-      // updateSong();
-  }
-  );
-  // logs the actual query being run
+  console.log("Inserting a new record...\n");
+  var query = connection.query(
+    "INSERT INTO records SET ?",
+    {
+      LTR:newRecord.LTR,
+      OSAT:newRecord.OSAT,
+      comment:newRecord.comment,
+      phone:newRecord.phone,
+      email:newRecord.email
+    },
+    function(err, res) {
+      console.log(res.affectedRows + " record inserted!\n");
+    }
+    );
   console.log(query.sql);
 }
 
@@ -64,69 +58,44 @@ function createRecord() {
 
 
 // Routes=============================================================
-
-// Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-	res.sendFile(path.join(__dirname, "Survey.html"));
+  res.sendFile(path.join(__dirname, "Survey.html"));
 });
-
-// app.get("/admin", function(req, res) {
-//   res.sendFile(path.join(__dirname, "Admin.html"));
-// });
 
 app.get("/admin", function(req, res) {
-	connection.query("SELECT * FROM records ORDER BY record_id", function(err, results){
-		var html = "<h1>Survey Records</h1>"
-		html += "<ul>"
-		var cast;
-		for(i=0;i<results.length;i++){
-			html += "<h3>-------------------------------------------------</h3>";
-			html += "<p>ID: " + results[i].record_id + "</p>";
-			html += "<p>LTR: " + results[i].LTR + "</p>";
-			html += "<p>OSAT: " + results[i].OSAT + "</p>";
-      //this needs a timestamp
-      html += "<p>Comment: " + results[i].comment + "</p>";
-      html += "<p>Phone #: " + results[i].phone + "</p>";
-      html += "<p>Email: " + results[i].email + "</p>";
-  }
-
-  res.send(html); 
-})
+  connection.query("SELECT * FROM records;", function(err, data) {
+    if (err) throw err;
+    res.render("index", { records: data });
+  });
 });
+
 
 
 
 // get images when requested
 app.get("/images/background-1932466_960_720.jpg", function(req, res) {
-	res.sendFile(path.join(__dirname, "images/background-1932466_960_720.jpg"));
+  res.sendFile(path.join(__dirname, "images/background-1932466_960_720.jpg"));
 });
 app.get("/images/spaghetti-2210680_960_720.jpg", function(req, res) {
-	res.sendFile(path.join(__dirname, "images/spaghetti-2210680_960_720.jpg"));
+  res.sendFile(path.join(__dirname, "images/spaghetti-2210680_960_720.jpg"));
 });
 
 app.get("/images/pasta-2776701_960_720.jpg", function(req, res) {
-	res.sendFile(path.join(__dirname, "images/pasta-2776701_960_720.jpg"));
+  res.sendFile(path.join(__dirname, "images/pasta-2776701_960_720.jpg"));
 });
 
 
-
-
-// Reply with all records in json format
-// app.get("/tables", function(req, res) {
-//   res.json(records);
-// });
-
 // dynamically searches our data for the query and responds 
 app.get("/api/:records?", function(req, res) {
-	var chosen = req.params.records;
-	if (chosen) {
-		console.log(chosen);
+  var chosen = req.params.records;
+  if (chosen) {
+    console.log(chosen);
 
 //search through our data for the route name that came back
 for (var i = 0; i < records.length; i++) {
-	if (chosen === records[i].uniqueID) {
-		return res.json(records[i]);
-	}
+  if (chosen === records[i].uniqueID) {
+    return res.json(records[i]);
+  }
 }
 return res.json(false);
 }
@@ -142,30 +111,8 @@ app.post("/api/new", function(req, res) {
   newRecord = req.body;
   newRecord.uniqueID = newRecord.email.replace(/\s+/g, "").toLowerCase();
   console.log(newRecord);
-  records.push(newRecord);
   createRecord()
   return res.json("yes");
 });
 
-
-
-
-
-
-// Dummy Data =============================================================
-var records = [
-{
-	LTR: 10,
-	OSAT: 9,
-	comment: "I like Pizza",
-	phone: "732-898-7684",
-	email: "It's me! Mario!"
-},
-{
-	LTR: 8,
-	OSAT: 6,
-	comment: "Your pizza was okay",
-	phone: "",
-	email: "No thankyou"
-},
-];
+module.exports = connection;

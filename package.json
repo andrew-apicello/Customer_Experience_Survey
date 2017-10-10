@@ -1,5 +1,5 @@
 {
-  "name": "customer_experience_survey",
+  "name": "fullsurvey",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,18 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andrew-apicello/Customer_Experience_Survey.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/andrew-apicello/Customer_Experience_Survey/issues"
-  },
-  "homepage": "https://github.com/andrew-apicello/Customer_Experience_Survey#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "d3": "^4.11.0",
     "express": "^4.16.1",
     "express-handlebars": "^3.0.0",
     "mysql": "^2.15.0"

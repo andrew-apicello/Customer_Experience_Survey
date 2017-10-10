@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Survey Admin Page</title>
+	<script src="http://d3js.org/d3.v3.min.js" ></script>
+
+	<style type="text/css">
+		li{
+			padding: 30px;
+			float: left;
+			border: black solid 1px;
+			width: 25%;
+			height: 300px;
+		}
+		ul{
+			list-style: none;
+		}
+		
+	</style>
+</head>
+<body>
+	<h1>Records List</h1>
+	<hr>
+	<ul>
+		{{#each records}}
+		<li>
+			<p>ID: {{record_id}}</p>
+			<p>LTR: {{LTR}}</p>
+			<p>OSAT: {{OSAT}}</p>
+			<p>Comment: {{comment}}</p>
+			<p>Phone: {{phone}}</p>
+			<p>Email: {{email}}</p>
+		</li>
+		{{/each}}
+	</ul>
+
+	<h4>paragraph</h4>
+	<script type="text/javascript">
+	//select element and replace
+	d3.select("h4").text("hello world");
+
+
+	var dataArray = [20,50,50,50,40,60,70,90,100];
+	var max = Math.max(...dataArray);
+	console.log(max);
+	//create the canvas
+	
+	var width = 500;
+	var height = 500;
+
+	var widthScale = d3.scale.linear()
+	.domain([0,max])
+	.range([0,width]);
+
+	var colorScale = d3.scale.linear()
+	.domain([0,max])
+	.range(["rgb(13, 220, 224)","rgb(25, 104, 232)"]);  
+
+	var axis = d3.svg.axis()
+	.scale(widthScale);
+
+
+
+	var canvas = d3.select("body")
+	.append("svg")
+		.style("border","black solid 2px")
+		.style("padding",20)
+		.attr("width",500)
+		.attr("height",380)
+		.append("g");
+
+
+		var bars = canvas.selectAll("rect")
+		.data(dataArray) //data comes from dataArray
+		.enter() //returns placeholds for data elements
+		.append("rect")
+		.attr("width",function(datum){return(widthScale(datum))})
+		.attr("height",30)
+		.attr("fill",function(datum){return(colorScale(datum))})
+		.attr("y",function(datum,i){return (i *40)});
+
+		canvas.append("g")
+		.attr("transform","translate(0,370)")
+		.call(axis);
+
+	// // draw a circle
+	// var circle = canvas.append("circle")
+	// 	.attr("cx",250) //starting x position
+	// 	.attr("cy",250) //starting y position
+	// 	.attr("r",50) // radius of circle
+	// 	.attr("fill","red"); //fill of red
+
+	// //draw a rectangle
+	// var rect = canvas.append("rect")
+	// 	.attr("width",100)
+	// 	.attr("height",200)
+	// 	.attr("fill","blue");
+
+	// //draw a line
+	// var line = canvas.append("line")
+	// 			.attr("x1",0)
+	// 			.attr("y1",0)
+	// 			.attr("x2",500)
+	// 			.attr("y2",500)
+	// 			.attr("stroke","green")
+	// 			.attr("stroke-width",10);
+
+
+</script>
+</body>
+</html>
